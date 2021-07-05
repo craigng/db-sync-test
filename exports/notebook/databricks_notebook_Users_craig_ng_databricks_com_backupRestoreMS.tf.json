@@ -1,0 +1,11 @@
+{
+    "resource": {
+        "databricks_notebook": {
+            "databricks_notebook_Users_craig_ng_databricks_com_backupRestoreMS": {
+                "language": "PYTHON",
+                "path": "${var._Users_}craig.ng@databricks.com/backupRestoreMS",
+                "source": "databricks_notebook_Users_craig_ng_databricks_com_backupRestoreMS.py"
+            }
+        }
+    }
+}

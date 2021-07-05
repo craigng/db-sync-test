@@ -1,0 +1,11 @@
+{
+    "resource": {
+        "databricks_notebook": {
+            "databricks_notebook_Users_craig_ng_databricks_com_migration_02_IMPORT": {
+                "language": "PYTHON",
+                "path": "${var._Users_}craig.ng@databricks.com/migration/02_IMPORT",
+                "source": "databricks_notebook_Users_craig_ng_databricks_com_migration_02_IMPORT.py"
+            }
+        }
+    }
+}
