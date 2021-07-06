@@ -1,0 +1,11 @@
+{
+    "resource": {
+        "databricks_notebook": {
+            "databricks_notebook_Users_craig_ng_databricks_com_migration_metastore": {
+                "language": "PYTHON",
+                "path": "/Users/craig.ng@databricks.com/migration/metastore",
+                "source": "databricks_notebook_Users_craig_ng_databricks_com_migration_metastore.py"
+            }
+        }
+    }
+}

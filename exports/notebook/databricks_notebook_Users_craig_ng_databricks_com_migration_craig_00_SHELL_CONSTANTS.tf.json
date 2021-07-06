@@ -1,0 +1,11 @@
+{
+    "resource": {
+        "databricks_notebook": {
+            "databricks_notebook_Users_craig_ng_databricks_com_migration_craig_00_SHELL_CONSTANTS": {
+                "language": "PYTHON",
+                "path": "/Users/craig.ng@databricks.com/migration - craig/00_SHELL_CONSTANTS",
+                "source": "databricks_notebook_Users_craig_ng_databricks_com_migration_craig_00_SHELL_CONSTANTS.py"
+            }
+        }
+    }
+}

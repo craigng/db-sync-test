@@ -1,0 +1,11 @@
+{
+    "resource": {
+        "databricks_notebook": {
+            "databricks_notebook_Users_craig_ng_databricks_com_migration_az_login": {
+                "language": "PYTHON",
+                "path": "/Users/craig.ng@databricks.com/migration/az-login",
+                "source": "databricks_notebook_Users_craig_ng_databricks_com_migration_az_login.py"
+            }
+        }
+    }
+}
