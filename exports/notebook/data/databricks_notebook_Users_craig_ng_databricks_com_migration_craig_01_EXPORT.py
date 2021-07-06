@@ -277,7 +277,12 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 
 # MAGIC %sh
 # MAGIC . ~/shell_constants.sh
-# MAGIC databricks-sync -v debug export --profile ${DATABRICKS_EXPORT_PROFILE_NAME} -g ${REPO_URL} -c ${DEFAULT_EXPORT_CONFIG_FILENAME}_notebooks.yaml --branch 3675907515670194-identity --dask
+# MAGIC databricks-sync -v debug export --profile ${DATABRICKS_EXPORT_PROFILE_NAME} -g ${REPO_URL} -c ${DEFAULT_EXPORT_CONFIG_FILENAME}_notebooks.yaml --branch 3675907515670194-notebooks --dask
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #OTHER
 
 # COMMAND ----------
 
@@ -286,16 +291,6 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 # MAGIC cat > ${DEFAULT_EXPORT_CONFIG_FILENAME}.yaml <<EOF
 # MAGIC name: test
 # MAGIC objects:
-# MAGIC   notebook:
-# MAGIC     # Notebook path can be a string, a list or a YAML items collection (multiple subgroups starting with - )
-# MAGIC     notebook_path:
-# MAGIC       - "/Users"
-# MAGIC       - "/Shared"
-# MAGIC       - "/Repos"
-# MAGIC     # Use Custom map var to setup a new location
-# MAGIC     custom_map_vars:
-# MAGIC       path: "(?<variable>^\/[^\/]*\/)"
-# MAGIC   
 # MAGIC   instance_pool:
 # MAGIC     # pattern will be implemented in the future - make sure you have "*" in here
 # MAGIC     patterns:
@@ -318,11 +313,6 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 # MAGIC     # convert_existing_cluster_to_var: true
 # MAGIC     # convert_new_cluster_instance_pool_to_var: true
 # MAGIC     # convert_new_cluster_cluster_policy_to_var: true
-# MAGIC 
-# MAGIC   identity:
-# MAGIC     # pattern will be implemented in the future - make sure you have "*" in here
-# MAGIC     patterns:
-# MAGIC       - "*"
 # MAGIC EOF
 
 # COMMAND ----------
