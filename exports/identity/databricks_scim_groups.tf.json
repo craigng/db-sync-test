@@ -1,0 +1,15 @@
+{
+    "locals": {
+        "databricks_groups_for_each_var": {}
+    },
+    "resource": {
+        "databricks_group": {
+            "databricks_scim_groups": {
+                "allow_cluster_create": "${each.value.allow_cluster_create}",
+                "allow_instance_pool_create": "${each.value.allow_instance_pool_create}",
+                "display_name": "${each.value.display_name}",
+                "for_each": "${local.databricks_groups_for_each_var}"
+            }
+        }
+    }
+}
