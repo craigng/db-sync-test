@@ -1,1 +1,7 @@
-{}
+{
+    "variable": {
+        "Standard_DS3_v2": {
+            "default": "Standard_DS3_v2"
+        }
+    }
+}
