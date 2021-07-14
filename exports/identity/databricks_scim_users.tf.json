@@ -1,12 +1,26 @@
 {
     "locals": {
         "databricks_scim_users_for_each_var": {
+            "bruce.nelson@databricks.com": {
+                "active": true,
+                "allow_cluster_create": false,
+                "allow_instance_pool_create": false,
+                "display_name": "Bruce Nelson",
+                "user_name": "bruce.nelson@databricks.com"
+            },
             "craig.ng@databricks.com": {
                 "active": true,
                 "allow_cluster_create": false,
                 "allow_instance_pool_create": false,
                 "display_name": "Craig Ng",
                 "user_name": "craig.ng@databricks.com"
+            },
+            "sri.tikkireddy@databricks.com": {
+                "active": true,
+                "allow_cluster_create": false,
+                "allow_instance_pool_create": false,
+                "display_name": "Sri Tikkireddy",
+                "user_name": "sri.tikkireddy@databricks.com"
             }
         }
     },

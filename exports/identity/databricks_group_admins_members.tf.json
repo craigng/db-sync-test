@@ -1,9 +1,17 @@
 {
     "locals": {
         "databricks_group_members_databricks_group_admins_members_for_each_var": {
+            "user-bruce.nelson@databricks.com": {
+                "group_id": "${data.databricks_group.admins.id}",
+                "member_id": "${\"bruce.nelson@databricks.com\" == var.ME_USERNAME ? \"something temp will be skipped\" : databricks_user.databricks_scim_users[\"bruce.nelson@databricks.com\"].id}"
+            },
             "user-craig.ng@databricks.com": {
                 "group_id": "${data.databricks_group.admins.id}",
                 "member_id": "${\"craig.ng@databricks.com\" == var.ME_USERNAME ? \"something temp will be skipped\" : databricks_user.databricks_scim_users[\"craig.ng@databricks.com\"].id}"
+            },
+            "user-sri.tikkireddy@databricks.com": {
+                "group_id": "${data.databricks_group.admins.id}",
+                "member_id": "${\"sri.tikkireddy@databricks.com\" == var.ME_USERNAME ? \"something temp will be skipped\" : databricks_user.databricks_scim_users[\"sri.tikkireddy@databricks.com\"].id}"
             }
         }
     },
