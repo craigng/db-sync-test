@@ -154,6 +154,15 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC     - "dbfs:/FileStore/jars"
+# MAGIC     - "dbfs:/databricks/scripts"
+# MAGIC     - "dbfs:/external_metastore_jars"
+# MAGIC     - "dbfs:/external_purview_jars"
+# MAGIC     - "dbfs:/external_purview_jars23"
+
+# COMMAND ----------
+
 # MAGIC %sh
 # MAGIC . ~/shell_constants.sh
 # MAGIC cat > ${DBFS_EXPORT_CONFIG_FILENAME}.yaml <<EOF
@@ -161,11 +170,8 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 # MAGIC objects:
 # MAGIC   dbfs_file:
 # MAGIC     dbfs_path:
-# MAGIC     - "dbfs:/FileStore/jars"
-# MAGIC     - "dbfs:/databricks/scripts"
-# MAGIC     - "dbfs:/external_metastore_jars"
-# MAGIC     - "dbfs:/external_purview_jars"
-# MAGIC     - "dbfs:/external_purview_jars23"
+# MAGIC     - "dbfs:/craig_one"
+# MAGIC     - "dbfs:/craig_two"
 # MAGIC EOF
 
 # COMMAND ----------
@@ -288,7 +294,7 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 
 # MAGIC %sh
 # MAGIC . ~/shell_constants.sh
-# MAGIC cat > ${DEFAULT_EXPORT_CONFIG_FILENAME}.yaml <<EOF
+# MAGIC cat > ${DEFAULT_EXPORT_CONFIG_FILENAME}_other.yaml <<EOF
 # MAGIC name: test
 # MAGIC objects:
 # MAGIC   instance_pool:
@@ -325,7 +331,7 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 
 # MAGIC %sh
 # MAGIC . ~/shell_constants.sh
-# MAGIC databricks-sync -v debug export --profile ${DATABRICKS_EXPORT_PROFILE_NAME} -g ${REPO_URL} -c ${DEFAULT_EXPORT_CONFIG_FILENAME}.yaml --branch main --dask
+# MAGIC databricks-sync -v debug export --profile ${DATABRICKS_EXPORT_PROFILE_NAME} -g ${REPO_URL} -c ${DEFAULT_EXPORT_CONFIG_FILENAME}_other.yaml --branch 3675907515670194-other --dask
 
 # COMMAND ----------
 

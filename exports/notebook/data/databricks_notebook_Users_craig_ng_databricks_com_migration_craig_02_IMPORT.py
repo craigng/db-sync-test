@@ -187,8 +187,8 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 
 # MAGIC %sh
 # MAGIC 
-# MAGIC cat /dbfs/backends/dbfs-files-backend-config.json
-# MAGIC cat /dbfs/backends/non-dbfs-files-backend-config.json
+# MAGIC cat /dbfs/craig.ng@databricks.com/backends/dbfs-files-backend-config.json
+# MAGIC cat /dbfs/craig.ng@databricks.com/backends/non-dbfs-files-backend-config.json
 
 # COMMAND ----------
 
@@ -297,8 +297,8 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 # MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
 # MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
 # MAGIC -g $REPO_URL \
-# MAGIC --branch main \
-# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
+# MAGIC --branch 3675907515670194-identity \
+# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/identity \
 # MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config.json \
 # MAGIC --plan \
 # MAGIC --skip-refresh
@@ -320,8 +320,8 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 # MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
 # MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
 # MAGIC -g $REPO_URL \
-# MAGIC --branch main \
-# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
+# MAGIC --branch 3675907515670194-identity \
+# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/identity \
 # MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config.json \
 # MAGIC --plan \
 # MAGIC --skip-refresh \
@@ -344,8 +344,8 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 # MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
 # MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
 # MAGIC -g $REPO_URL \
-# MAGIC --branch main \
-# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
+# MAGIC --branch 3675907515670194-identity \
+# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/identity \
 # MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config.json \
 # MAGIC --plan \
 # MAGIC --skip-refresh
