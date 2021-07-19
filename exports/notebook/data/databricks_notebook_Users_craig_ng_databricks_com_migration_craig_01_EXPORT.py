@@ -174,6 +174,7 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 # MAGIC     - "dbfs:/craig_two"
 # MAGIC     - "dbfs:/craig_three"
 # MAGIC     - "dbfs:/craig_four"
+# MAGIC     - "dbfs:/craig_five"
 # MAGIC EOF
 
 # COMMAND ----------
@@ -273,7 +274,7 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 # MAGIC   notebook:
 # MAGIC     # Notebook path can be a string, a list or a YAML items collection (multiple subgroups starting with - )
 # MAGIC     notebook_path:
-# MAGIC       - "/Users"
+# MAGIC       - "/Users/craig.ng@databricks.com"
 # MAGIC       - "/Shared"
 # MAGIC       - "/Repos"
 # MAGIC     # Use Custom map var to setup a new location

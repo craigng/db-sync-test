@@ -154,12 +154,16 @@ normalized_host = os.environ["DATABRICKS_IMPORT_HOST_FORMATTED"]
 import_workspace_dir = backends_dir / Path(normalized_host)
 
 dbfs_files_backend_file = import_workspace_dir / "dbfs-files-backend-config.json"
-non_dbfs_files_backend_file = import_workspace_dir / "non-dbfs-files-backend-config.json"
+non_dbfs_files_backend_file_notebook = import_workspace_dir / "non-dbfs-files-backend-config_notebook.json"
+non_dbfs_files_backend_file_cluster = import_workspace_dir / "non-dbfs-files-backend-config_cluster.json"
+non_dbfs_files_backend_file_job = import_workspace_dir / "non-dbfs-files-backend-config_job.json"
 
 import_workspace_dir.mkdir(parents=True, exist_ok=True)
 
 dbfs_files_key = f"{normalized_host}_dbfs_files.tfstate"
-non_dbfs_files_key = f"{normalized_host}_non_dbfs_files.tfstate"
+non_dbfs_files_key_notebook = f"{normalized_host}_non_dbfs_files_notebook.tfstate"
+non_dbfs_files_key_cluster = f"{normalized_host}_non_dbfs_files_cluster.tfstate"
+non_dbfs_files_key_job = f"{normalized_host}_non_dbfs_files_job.tfstate"
 
 def make_json(path, key):
   j = {
@@ -181,14 +185,18 @@ def make_json(path, key):
   print(f"Created backend file at: {path}")
 
 make_json(dbfs_files_backend_file, dbfs_files_key)
-make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
+make_json(non_dbfs_files_backend_file_notebook, non_dbfs_files_key_notebook)
+make_json(non_dbfs_files_backend_file_cluster, non_dbfs_files_key_cluster)
+make_json(non_dbfs_files_backend_file_job, non_dbfs_files_key_job)
 
 # COMMAND ----------
 
 # MAGIC %sh
 # MAGIC 
 # MAGIC cat /dbfs/craig.ng@databricks.com/backends/dbfs-files-backend-config.json
-# MAGIC cat /dbfs/craig.ng@databricks.com/backends/non-dbfs-files-backend-config.json
+# MAGIC cat /dbfs/craig.ng@databricks.com/backends/non-dbfs-files-backend-config_notebook.json
+# MAGIC cat /dbfs/craig.ng@databricks.com/backends/non-dbfs-files-backend-config_cluster.json
+# MAGIC cat /dbfs/craig.ng@databricks.com/backends/non-dbfs-files-backend-config_job.json
 
 # COMMAND ----------
 
@@ -278,7 +286,7 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 
 # MAGIC %md
 # MAGIC 
-# MAGIC # Import Non DBFS Files
+# MAGIC # Import Notebooks
 
 # COMMAND ----------
 
@@ -297,11 +305,11 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 # MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
 # MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
 # MAGIC -g $REPO_URL \
-# MAGIC --branch 3675907515670194-other \
+# MAGIC --branch 3675907515670194-notebooks \
+# MAGIC --databricks-object-type notebook \
 # MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
-# MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config.json \
-# MAGIC --plan \
-# MAGIC --skip-refresh
+# MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config_notebook.json \
+# MAGIC --plan
 
 # COMMAND ----------
 
@@ -320,11 +328,11 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 # MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
 # MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
 # MAGIC -g $REPO_URL \
-# MAGIC --branch 3675907515670194-other \
+# MAGIC --branch 3675907515670194-notebooks \
+# MAGIC --databricks-object-type notebook \
 # MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
-# MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config.json \
+# MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config_notebook.json \
 # MAGIC --plan \
-# MAGIC --skip-refresh \
 # MAGIC --apply
 
 # COMMAND ----------
@@ -344,21 +352,71 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 # MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
 # MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
 # MAGIC -g $REPO_URL \
-# MAGIC --branch 3675907515670194-other \
+# MAGIC --branch 3675907515670194-notebooks \
+# MAGIC --databricks-object-type notebook \
 # MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
-# MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config.json \
+# MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config_notebook.json \
+# MAGIC --plan
+
+# COMMAND ----------
+
+# MAGIC %md #Import everything else
+
+# COMMAND ----------
+
+# MAGIC %md #Pre apply plan
+
+# COMMAND ----------
+
+# MAGIC %sh
+# MAGIC 
+# MAGIC . ~/shell_constants.sh
+# MAGIC mkdir -p ${DBFS_HOME}/artifact_dir/nondbfsfiles/
+# MAGIC eval "$(ssh-agent -s)"
+# MAGIC ssh-add ~/.ssh/id_rsa
+# MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
+# MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
+# MAGIC -g $REPO_URL \
+# MAGIC --branch 3675907515670194-other \
+# MAGIC --databricks-object-type job \
+# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
+# MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config_job.json \
+# MAGIC --plan
+
+# COMMAND ----------
+
+# MAGIC %sh
+# MAGIC 
+# MAGIC . ~/shell_constants.sh
+# MAGIC mkdir -p ${DBFS_HOME}/artifact_dir/nondbfsfiles/
+# MAGIC eval "$(ssh-agent -s)"
+# MAGIC ssh-add ~/.ssh/id_rsa
+# MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
+# MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
+# MAGIC -g $REPO_URL \
+# MAGIC --branch 3675907515670194-other \
+# MAGIC --databricks-object-type job \
+# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
+# MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config_job.json \
 # MAGIC --plan \
-# MAGIC --skip-refresh
+# MAGIC --apply
 
 # COMMAND ----------
 
-spark.conf.set(
-  "fs.azure.account.key.csntestendpoint.blob.core.windows.net",
-  '9JbMeWEVzyTnoDuhm8vSmsl49AjNQNRrUsJNT832/0osBpy254fC1NHxrh1OKxgyj7nWI6q64SdZzQTyPcYSfQ==')
-
-# COMMAND ----------
-
-dbutils.fs.ls("wasbs://dbsyncstate@csntestendpoint.blob.core.windows.net/")
+# MAGIC %sh
+# MAGIC 
+# MAGIC . ~/shell_constants.sh
+# MAGIC mkdir -p ${DBFS_HOME}/artifact_dir/nondbfsfiles/
+# MAGIC eval "$(ssh-agent -s)"
+# MAGIC ssh-add ~/.ssh/id_rsa
+# MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
+# MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
+# MAGIC -g $REPO_URL \
+# MAGIC --branch 3675907515670194-other \
+# MAGIC --databricks-object-type job \
+# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
+# MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config_job.json \
+# MAGIC --plan
 
 # COMMAND ----------
 
