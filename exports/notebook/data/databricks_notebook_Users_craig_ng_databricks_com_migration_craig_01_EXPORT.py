@@ -172,6 +172,8 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 # MAGIC     dbfs_path:
 # MAGIC     - "dbfs:/craig_one"
 # MAGIC     - "dbfs:/craig_two"
+# MAGIC     - "dbfs:/craig_three"
+# MAGIC     - "dbfs:/craig_four"
 # MAGIC EOF
 
 # COMMAND ----------
@@ -292,11 +294,7 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 
 # COMMAND ----------
 
-# MAGIC %sh
-# MAGIC . ~/shell_constants.sh
-# MAGIC cat > ${DEFAULT_EXPORT_CONFIG_FILENAME}_other.yaml <<EOF
-# MAGIC name: test
-# MAGIC objects:
+# MAGIC %md
 # MAGIC   instance_pool:
 # MAGIC     # pattern will be implemented in the future - make sure you have "*" in here
 # MAGIC     patterns:
@@ -309,7 +307,14 @@ update_and_persist_config(os.environ["DATABRICKS_EXPORT_PROFILE_NAME"], tgt_cfg)
 # MAGIC     # Use this to choose to pin the first twenty clusters. (This is a limit set by the databricks platform.)
 # MAGIC     # This can help prevent your clusters from disappearing after 30 days if they are in terminated state.
 # MAGIC #    pin_first_20: false
-# MAGIC 
+
+# COMMAND ----------
+
+# MAGIC %sh
+# MAGIC . ~/shell_constants.sh
+# MAGIC cat > ${DEFAULT_EXPORT_CONFIG_FILENAME}_other.yaml <<EOF
+# MAGIC name: test
+# MAGIC objects:
 # MAGIC   job:
 # MAGIC     # pattern will be implemented in the future - make sure you have "*" in here
 # MAGIC     patterns:

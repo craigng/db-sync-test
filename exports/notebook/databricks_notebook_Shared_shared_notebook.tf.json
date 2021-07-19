@@ -1,0 +1,11 @@
+{
+    "resource": {
+        "databricks_notebook": {
+            "databricks_notebook_Shared_shared_notebook": {
+                "language": "PYTHON",
+                "path": "/Shared/shared notebook",
+                "source": "databricks_notebook_Shared_shared_notebook.py"
+            }
+        }
+    }
+}

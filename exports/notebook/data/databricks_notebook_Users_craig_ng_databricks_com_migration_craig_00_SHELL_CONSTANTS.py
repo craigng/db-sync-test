@@ -28,7 +28,7 @@
 # MAGIC export DATABRICKS_IMPORT_HOST_FORMATTED=$(echo "$DATABRICKS_IMPORT_HOST" | awk -F[/:] '{print $4}' | sed -E 's/[^[:alnum:][:space:]]+/_/g')
 # MAGIC 
 # MAGIC # Import azure backend rg
-# MAGIC export DATABRICKS_IMPORT_AZURE_BACKEND_RG_NAME="test-craig"
+# MAGIC export DATABRICKS_IMPORT_AZURE_BACKEND_RG_NAME="test_craig"
 # MAGIC export DATABRICKS_IMPORT_AZURE_BACKEND_SA_NAME="csntestendpoint"
 # MAGIC export DATABRICKS_IMPORT_AZURE_BACKEND_CONTAINER_NAME="dbsyncstate"
 # MAGIC export DATABRICKS_IMPORT_AZURE_BACKEND_ACCESS_KEY_SCOPE="npip-scope"

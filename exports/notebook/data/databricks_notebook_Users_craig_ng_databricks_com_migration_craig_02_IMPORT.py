@@ -297,8 +297,8 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 # MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
 # MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
 # MAGIC -g $REPO_URL \
-# MAGIC --branch 3675907515670194-identity \
-# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/identity \
+# MAGIC --branch 3675907515670194-other \
+# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
 # MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config.json \
 # MAGIC --plan \
 # MAGIC --skip-refresh
@@ -320,8 +320,8 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 # MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
 # MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
 # MAGIC -g $REPO_URL \
-# MAGIC --branch 3675907515670194-identity \
-# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/identity \
+# MAGIC --branch 3675907515670194-other \
+# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
 # MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config.json \
 # MAGIC --plan \
 # MAGIC --skip-refresh \
@@ -344,8 +344,21 @@ make_json(non_dbfs_files_backend_file, non_dbfs_files_key)
 # MAGIC TF_VAR_CLOUD=azure GIT_PYTHON_TRACE=full databricks-sync -v debug import \
 # MAGIC --profile $DATABRICKS_IMPORT_PROFILE_NAME \
 # MAGIC -g $REPO_URL \
-# MAGIC --branch 3675907515670194-identity \
-# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/identity \
+# MAGIC --branch 3675907515670194-other \
+# MAGIC --artifact-dir ${DBFS_HOME}/artifact_dir/nondbfsfiles/ \
 # MAGIC --backend-file ${DBFS_HOME}/backends/${DATABRICKS_IMPORT_HOST_FORMATTED}/non-dbfs-files-backend-config.json \
 # MAGIC --plan \
 # MAGIC --skip-refresh
+
+# COMMAND ----------
+
+spark.conf.set(
+  "fs.azure.account.key.csntestendpoint.blob.core.windows.net",
+  '9JbMeWEVzyTnoDuhm8vSmsl49AjNQNRrUsJNT832/0osBpy254fC1NHxrh1OKxgyj7nWI6q64SdZzQTyPcYSfQ==')
+
+# COMMAND ----------
+
+dbutils.fs.ls("wasbs://dbsyncstate@csntestendpoint.blob.core.windows.net/")
+
+# COMMAND ----------
+

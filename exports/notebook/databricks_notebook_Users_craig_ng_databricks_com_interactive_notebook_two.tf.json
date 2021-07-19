@@ -1,0 +1,11 @@
+{
+    "resource": {
+        "databricks_notebook": {
+            "databricks_notebook_Users_craig_ng_databricks_com_interactive_notebook_two": {
+                "language": "PYTHON",
+                "path": "/Users/craig.ng@databricks.com/interactive notebook two",
+                "source": "databricks_notebook_Users_craig_ng_databricks_com_interactive_notebook_two.py"
+            }
+        }
+    }
+}
