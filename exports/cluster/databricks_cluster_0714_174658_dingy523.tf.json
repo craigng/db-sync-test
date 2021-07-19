@@ -1,0 +1,27 @@
+{
+    "resource": {
+        "databricks_cluster": {
+            "databricks_cluster_0714_174658_dingy523": {
+                "autotermination_minutes": 120,
+                "cluster_name": "singlenode",
+                "custom_tags": {
+                    "ResourceClass": "SingleNode"
+                },
+                "driver_node_type_id": "${var.Standard_DS3_v2}",
+                "enable_elastic_disk": "${upper(var.CLOUD) == \"AZURE\" ? true : true}",
+                "enable_local_disk_encryption": false,
+                "node_type_id": "${var.Standard_DS3_v2}",
+                "num_workers": 0,
+                "spark_conf": {
+                    "spark.databricks.cluster.profile": "singleNode",
+                    "spark.databricks.delta.preview.enabled": "true",
+                    "spark.master": "local[*, 4]"
+                },
+                "spark_env_vars": {
+                    "PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+                },
+                "spark_version": "8.3.x-scala2.12"
+            }
+        }
+    }
+}
