@@ -1,0 +1,30 @@
+{
+    "resource": {
+        "databricks_job": {
+            "databricks_job_66": {
+                "email_notifications": {
+                    "no_alert_for_skipped_runs": false
+                },
+                "max_concurrent_runs": 1,
+                "name": "job one",
+                "new_cluster": {
+                    "cluster_name": "",
+                    "enable_elastic_disk": "${upper(var.CLOUD) == \"AZURE\" ? true : true}",
+                    "node_type_id": "${var.Standard_DS3_v2}",
+                    "num_workers": 8,
+                    "spark_conf": {
+                        "spark.databricks.delta.preview.enabled": "true"
+                    },
+                    "spark_env_vars": {
+                        "PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+                    },
+                    "spark_version": "8.3.x-scala2.12"
+                },
+                "notebook_task": {
+                    "notebook_path": "/Users/craig.ng@databricks.com/interactive notebook one"
+                },
+                "timeout_seconds": 0
+            }
+        }
+    }
+}
